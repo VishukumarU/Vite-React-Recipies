@@ -160,7 +160,7 @@ const Header = () => {
       <div className="hidden sm:block">
         <NavLink
           className="px-2 py-1 mr-2 rounded-md bg-amber-200 text-slate-700 hover:bg-amber-300 hover:text-slate-600"
-          to="register"
+          to="auth/register"
         >
           Sign up
         </NavLink>
