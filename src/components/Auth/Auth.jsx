@@ -191,6 +191,11 @@ export const action = async ({ request }) => {
   const emailEntry = formData.get("email");
   const password = formData.get("password");
 
+  const showToastAndRedirect = (name, redirectUrl) => {
+    toast.success(`Welcome ${name}`);
+    return redirect(redirectUrl);
+  };
+
   if (type === "register") {
     const firstName = formData.get("firstName");
     const lastName = formData.get("lastName");
@@ -200,8 +205,7 @@ export const action = async ({ request }) => {
       await updateProfile(auth.currentUser, {
         displayName: `${firstName}${lastName ? ` ${lastName}` : ""}`,
       });
-      toast.success(`Welcome ${auth.currentUser.displayName}`);
-      return redirect("/home");
+      return showToastAndRedirect(auth.currentUser.displayName, "/home");
     } catch (error) {
       const { code } = error;
       let errorMsg = "";
@@ -219,11 +223,9 @@ export const action = async ({ request }) => {
   } else if (type === "login") {
     try {
       await signInWithEmailAndPassword(auth, emailEntry, password);
-      toast.success(`Welcome ${auth.currentUser.displayName}`);
-      return redirect("/home");
+      return showToastAndRedirect(auth.currentUser.displayName, "/home");
     } catch (error) {
       const { code } = error;
-      console.log(code);
       let errorMsg = "";
       switch (code) {
         case "auth/invalid-login-credentials":
