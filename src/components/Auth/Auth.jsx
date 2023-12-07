@@ -4,7 +4,11 @@ import { Formik, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 
 const Auth = () => {
@@ -184,30 +188,53 @@ export default Auth;
 export const action = async ({ request }) => {
   const formData = await request.formData();
   const type = formData.get("type");
-  const firstName = formData.get("firstName");
-  const lastName = formData.get("lastName");
   const emailEntry = formData.get("email");
   const password = formData.get("password");
 
-  try {
-    await createUserWithEmailAndPassword(auth, emailEntry, password);
-    await updateProfile(auth.currentUser, {
-      displayName: `${firstName}${lastName ? ` ${lastName}` : ""}`,
-    });
-    toast.success(`Welcome ${auth.currentUser.displayName}`);
-    return redirect("/home");
-  } catch (error) {
-    const { code } = error;
-    let errorMsg = "";
-    switch (code) {
-      case `auth/email-already-in-use`:
-        errorMsg = "This email already exists. Please use a different one";
-        break;
-      default:
-        errorMsg = "An error occured when creating the user!";
-        break;
+  if (type === "register") {
+    const firstName = formData.get("firstName");
+    const lastName = formData.get("lastName");
+
+    try {
+      await createUserWithEmailAndPassword(auth, emailEntry, password);
+      await updateProfile(auth.currentUser, {
+        displayName: `${firstName}${lastName ? ` ${lastName}` : ""}`,
+      });
+      toast.success(`Welcome ${auth.currentUser.displayName}`);
+      return redirect("/home");
+    } catch (error) {
+      const { code } = error;
+      let errorMsg = "";
+      switch (code) {
+        case `auth/email-already-in-use`:
+          errorMsg = "This email already exists. Please use a different one";
+          break;
+        default:
+          errorMsg = "An error occured when creating the user!";
+          break;
+      }
+      toast.error(errorMsg);
+      return null;
     }
-    toast.error(errorMsg);
-    return null;
+  } else if (type === "login") {
+    try {
+      await signInWithEmailAndPassword(auth, emailEntry, password);
+      toast.success(`Welcome ${auth.currentUser.displayName}`);
+      return redirect("/home");
+    } catch (error) {
+      const { code } = error;
+      console.log(code);
+      let errorMsg = "";
+      switch (code) {
+        case "auth/invalid-login-credentials":
+          errorMsg = "Email or password is invalid. Please try again";
+          break;
+        default:
+          errorMsg = "An error occured when logging in. Please try again!!";
+          break;
+      }
+      toast.error(errorMsg);
+      return null;
+    }
   }
 };
