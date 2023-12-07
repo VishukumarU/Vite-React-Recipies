@@ -1,16 +1,11 @@
-import { useFetcher, useLocation } from "react-router-dom";
+import { redirect, useFetcher, useLocation } from "react-router-dom";
 import * as Yup from "yup";
-import {
-  Formik,
-  Field,
-  ErrorMessage,
-  useFormik,
-  useFormikContext,
-} from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from "../../firebase/firebase";
 
 const Auth = () => {
   const fetcher = useFetcher();
@@ -23,20 +18,18 @@ const Auth = () => {
         .max(50, "First Name is too long!")
         .required("First Name is required"),
     }),
-    email: Yup.string().email("Invalid email").required("Email is required"),
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Email Address is required"),
     password: Yup.string().min(6).max(20).required("Password is required"),
   });
 
-  let initialValues;
-
-  useEffect(() => {
-    initialValues = {
-      ...(!isLogin && { firstName: "" }),
-      ...(!isLogin && { lastName: "" }),
-      email: "",
-      password: "",
-    };
-  }, [isLogin]);
+  const initialValues = {
+    ...(!isLogin && { firstName: "" }),
+    ...(!isLogin && { lastName: "" }),
+    email: "",
+    password: "",
+  };
 
   return (
     <section className="h-screen">
@@ -188,11 +181,33 @@ const Auth = () => {
 
 export default Auth;
 
-export const action = async ({ params, request }) => {
-  console.log(params, request);
+export const action = async ({ request }) => {
   const formData = await request.formData();
   const type = formData.get("type");
-  toast.success("That is easy");
-  console.log(type);
-  return "";
+  const firstName = formData.get("firstName");
+  const lastName = formData.get("lastName");
+  const emailEntry = formData.get("email");
+  const password = formData.get("password");
+
+  try {
+    await createUserWithEmailAndPassword(auth, emailEntry, password);
+    await updateProfile(auth.currentUser, {
+      displayName: `${firstName}${lastName ? ` ${lastName}` : ""}`,
+    });
+    toast.success(`Welcome ${auth.currentUser.displayName}`);
+    return redirect("/home");
+  } catch (error) {
+    const { code } = error;
+    let errorMsg = "";
+    switch (code) {
+      case `auth/email-already-in-use`:
+        errorMsg = "This email already exists. Please use a different one";
+        break;
+      default:
+        errorMsg = "An error occured when creating the user!";
+        break;
+    }
+    toast.error(errorMsg);
+    return null;
+  }
 };
