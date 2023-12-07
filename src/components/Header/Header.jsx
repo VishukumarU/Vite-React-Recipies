@@ -172,7 +172,6 @@ const Header = () => {
               : defaultHeaderLinkClasses +
                 " hover:text-slate-600 hover:bg-slate-50"
           }
-          // className="px-2 py-1 hover:text-slate-600 text-slate-50 rounded-md hover:bg-slate-50"
           to="auth/login"
         >
           Login
