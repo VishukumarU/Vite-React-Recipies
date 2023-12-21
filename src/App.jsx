@@ -7,9 +7,11 @@ import "./App.css";
 import { db } from "./firebase/firebase";
 import RootLayout from "./components/RootLayout";
 import Home from "./components/Home/Home";
-import Auth, { action as authAction } from "./components/Auth/Auth";
+import Auth from "./components/Auth/Auth";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Register, { action as registerAction } from "./components/Auth/Register";
+import Login, { action as loginAction } from "./components/Auth/Login";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +30,18 @@ const router = createBrowserRouter([
       {
         path: "auth",
         element: <Auth />,
-        children: [{ path: "login" }, { path: "register" }],
-        action: authAction,
+        children: [
+          {
+            path: "login",
+            element: <Login />,
+            action: loginAction,
+          },
+          {
+            path: "register",
+            element: <Register />,
+            action: registerAction,
+          },
+        ],
       },
     ],
   },

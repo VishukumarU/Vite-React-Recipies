@@ -2,8 +2,10 @@ import { NavLink } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, CakeIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Fragment } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const defaultHeaderLinkClasses = `px-4 py-1 rounded-md text-slate-50 hover:bg-slate-300`;
 
   return (
@@ -20,10 +22,11 @@ const Header = () => {
         <div className="hidden sm:flex items-center justify-center gap-2 md:gap-8 text-slate-50">
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? defaultHeaderLinkClasses +
-                  " hover:text-slate-600 bg-slate-500"
-                : defaultHeaderLinkClasses + " hover:text-slate-600"
+              `${defaultHeaderLinkClasses} ${
+                isActive
+                  ? "hover:text-slate-600 bg-slate-500"
+                  : "hover:text-slate-600"
+              }`
             }
             to="home"
           >
@@ -31,10 +34,11 @@ const Header = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? defaultHeaderLinkClasses +
-                  " hover:text-slate-600 bg-slate-500"
-                : defaultHeaderLinkClasses + " hover:text-slate-600"
+              `${defaultHeaderLinkClasses} ${
+                isActive
+                  ? "hover:text-slate-600 bg-slate-500"
+                  : "hover:text-slate-600"
+              }`
             }
             to="blog"
           >
@@ -42,10 +46,11 @@ const Header = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? defaultHeaderLinkClasses +
-                  " hover:text-slate-600 bg-slate-500"
-                : defaultHeaderLinkClasses + " hover:text-slate-600"
+              `${defaultHeaderLinkClasses} ${
+                isActive
+                  ? "hover:text-slate-600 bg-slate-500"
+                  : "hover:text-slate-600"
+              }`
             }
             to="shop"
           >
@@ -53,10 +58,11 @@ const Header = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? defaultHeaderLinkClasses +
-                  " hover:text-slate-600 bg-slate-500"
-                : defaultHeaderLinkClasses + " hover:text-slate-600"
+              `${defaultHeaderLinkClasses} ${
+                isActive
+                  ? "hover:text-slate-600 bg-slate-500"
+                  : "hover:text-slate-600"
+              }`
             }
             to="about"
           >
@@ -64,10 +70,11 @@ const Header = () => {
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? defaultHeaderLinkClasses +
-                  " hover:text-slate-600 bg-slate-500"
-                : defaultHeaderLinkClasses + " hover:text-slate-600"
+              `${defaultHeaderLinkClasses} ${
+                isActive
+                  ? "hover:text-slate-600 bg-slate-500"
+                  : "hover:text-slate-600"
+              }`
             }
             to="contact"
           >
@@ -166,11 +173,11 @@ const Header = () => {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            isActive
-              ? defaultHeaderLinkClasses +
-                " hover:text-slate-600 bg-slate-500 text-white"
-              : defaultHeaderLinkClasses +
-                " hover:text-slate-600 hover:bg-slate-50"
+            `${defaultHeaderLinkClasses} ${
+              isActive
+                ? " hover:text-slate-600 bg-slate-500 text-white"
+                : " hover:text-slate-600 hover:bg-slate-50"
+            }`
           }
           to="auth/login"
         >
