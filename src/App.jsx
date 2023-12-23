@@ -51,7 +51,7 @@ function App() {
   return (
     <main>
       <RouterProvider router={router} />
-      <ToastContainer position="top-right" />
+      <ToastContainer className="mt-24" position="top-right" />
     </main>
   );
 }
