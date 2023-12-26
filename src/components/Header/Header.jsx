@@ -155,45 +155,9 @@ const Header = () => {
                   : "hover:text-slate-600"
               }`
             }
-            to="blog"
+            to="recipes"
           >
-            Blog
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `${defaultHeaderLinkClasses} ${
-                isActive
-                  ? "hover:text-slate-600 bg-slate-500"
-                  : "hover:text-slate-600"
-              }`
-            }
-            to="shop"
-          >
-            Shop
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `${defaultHeaderLinkClasses} ${
-                isActive
-                  ? "hover:text-slate-600 bg-slate-500"
-                  : "hover:text-slate-600"
-              }`
-            }
-            to="about"
-          >
-            About
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              `${defaultHeaderLinkClasses} ${
-                isActive
-                  ? "hover:text-slate-600 bg-slate-500"
-                  : "hover:text-slate-600"
-              }`
-            }
-            to="contact"
-          >
-            Contact
+            Recipes
           </NavLink>
         </div>
       </div>
