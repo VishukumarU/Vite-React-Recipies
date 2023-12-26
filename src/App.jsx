@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Register, { action as registerAction } from "./components/Auth/Register";
 import Login, { action as loginAction } from "./components/Auth/Login";
+import RecipesLayout from "./components/Recipes/RecipesLayout";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         index: true,
         path: "home",
         element: <Home />,
+      },
+      {
+        path: "recipes",
+        element: <RecipesLayout />,
       },
       {
         path: "auth",
