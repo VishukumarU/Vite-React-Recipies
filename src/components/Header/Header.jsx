@@ -127,10 +127,9 @@ const Header = () => {
     <Popover
       className={
         "w-screen mx-auto flex items-center border-b-2 px-6 py-2 h-24 bg-primary"
-      }
-    >
+      }>
       <h1 className="font-bold flex items-center text-slate-50">
-        <CakeIcon className="h-6 w-6 mr-2" />
+        {/* <CakeIcon className="h-6 w-6 mr-2" /> */}
         <span>React Recipes</span>
       </h1>
       <div className="grow">
@@ -143,8 +142,7 @@ const Header = () => {
                   : "hover:text-slate-600"
               }`
             }
-            to="home"
-          >
+            to="home">
             Home
           </NavLink>
           <NavLink
@@ -155,8 +153,7 @@ const Header = () => {
                   : "hover:text-slate-600"
               }`
             }
-            to="recipes"
-          >
+            to="recipes">
             Recipes
           </NavLink>
         </div>
@@ -174,12 +171,10 @@ const Header = () => {
         enterTo=" scale-100 opacity-100"
         leave="duration-100 ease-in"
         leaveFrom="scale-100 opacity-100"
-        leaveTo="scale-95 opacity-0"
-      >
+        leaveTo="scale-95 opacity-0">
         <Popover.Panel
           focus
-          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
-        >
+          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
           <div className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y-2 divide-gray-50">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
@@ -195,32 +190,27 @@ const Header = () => {
                 <nav className="grid gap-7-8">
                   <NavLink
                     className="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2"
-                    to="home"
-                  >
+                    to="home">
                     Home
                   </NavLink>
                   <NavLink
                     className="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2"
-                    to="blog"
-                  >
+                    to="blog">
                     Blog
                   </NavLink>
                   <NavLink
                     className="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2"
-                    to="shop"
-                  >
+                    to="shop">
                     Shop
                   </NavLink>
                   <NavLink
                     className="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2"
-                    to="about"
-                  >
+                    to="about">
                     About
                   </NavLink>
                   <NavLink
                     className="focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 px-2"
-                    to="contact"
-                  >
+                    to="contact">
                     Contact
                   </NavLink>
                 </nav>
@@ -228,14 +218,12 @@ const Header = () => {
               <div className="mt-6 flex flex-col items-center gap-2">
                 <NavLink
                   to="register"
-                  className="rounded-md bg-white px-4 py-2 text-sm font-medium text-black md:text-xl w-full border-2 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
-                >
+                  className="rounded-md bg-white px-4 py-2 text-sm font-medium text-black md:text-xl w-full border-2 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                   Sign up
                 </NavLink>
                 <NavLink
                   to="login"
-                  className="rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-slate-100 md:text-xl w-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
-                >
+                  className="rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-slate-100 md:text-xl w-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500">
                   Login
                 </NavLink>
               </div>
