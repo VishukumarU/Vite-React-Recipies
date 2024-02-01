@@ -1,2 +1,6 @@
-Header:
-- 'src/components/Header/*'
+# header:
+# - 'src/components/Header/*'
+
+any-change:
+- changed-files:
+  - any-glob-to-any-file: '**'
