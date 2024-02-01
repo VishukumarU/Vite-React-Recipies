@@ -1,6 +1,25 @@
-# header:
-# - 'src/components/Header/*'
-
-any-change:
+navbar:
 - changed-files:
-  - any-glob-to-any-file: '**'
+  - any-glob-to-any-file: 'src/components/NavBar/*'
+
+home:
+- changed-files:
+  - any-glob-to-any-file: 'src/components/Home/*'
+
+authentication:
+- changed-files:
+  - any-glob-to-any-file: 'src/components/Auth/*'
+    
+assets:
+- changed-files:
+  - any-glob-to-any-file: 'src/assets/*'
+    
+base-styles:
+- changed-files:
+  - any-glob-to-any-file: 
+    - 'src/util/styles.js'
+    - 'src/index.css'
+    
+[router, app]:
+- changed-files:
+  - any-glob-to-any-file: 'src/App.jsx' 
