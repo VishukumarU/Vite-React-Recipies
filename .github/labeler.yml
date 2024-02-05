@@ -22,4 +22,8 @@ base-styles:
     
 [router, app]:
 - changed-files:
-  - any-glob-to-any-file: 'src/App.jsx' 
+  - any-glob-to-any-file: 'src/App.jsx'
+    
+workflow:
+  - changed-files:
+    - any-glob-to-any-file: '.github/**'
