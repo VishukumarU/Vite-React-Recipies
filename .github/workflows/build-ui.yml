@@ -16,9 +16,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20.10'
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
       - name: Generate Build
         run: npm run build
       - name: Share artifact inside workflow
