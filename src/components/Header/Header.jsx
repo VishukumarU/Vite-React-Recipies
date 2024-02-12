@@ -172,7 +172,7 @@ const Header = () => {
         <Popover.Panel
           focus
           className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden">
-          <div className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y-2 divide-gray-50">
+          <section className="rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5 divide-y-2 divide-gray-50">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
                 <h1 className="font-bold">Reacting Recipes</h1>
@@ -225,7 +225,7 @@ const Header = () => {
                 </NavLink>
               </div>
             </div>
-          </div>
+          </section>
         </Popover.Panel>
       </Transition>
       <div className="hidden sm:block w-1/12 text-end">
